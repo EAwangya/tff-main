@@ -1,5 +1,5 @@
 resource "aws_vpc" "demo" {
-  cidr_block       = "70.70.0.0/16"
+  cidr_block       = var.cidr_block[0]
   instance_tenancy = "default"
 
   tags = {
@@ -8,7 +8,8 @@ resource "aws_vpc" "demo" {
 }
 resource "aws_subnet" "demo1" {
   vpc_id     = aws_vpc.demo.id
-  cidr_block = "70.70.1.0/28"
+  cidr_block = var.cidr_block[1]
+
 
   tags = {
     Name = "subnet1"
@@ -16,7 +17,8 @@ resource "aws_subnet" "demo1" {
 }
 resource "aws_subnet" "demo2" {
   vpc_id     = aws_vpc.demo.id
-  cidr_block = "70.70.1.16/28"
+  cidr_block = var.cidr_block[2]
+
 
   tags = {
     Name = "subnet2"
